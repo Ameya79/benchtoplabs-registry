@@ -1,10 +1,27 @@
-# 🧪 Benchtop Labs Registry
+<div align="center">
+  <a href="https://benchtoplabs.vercel.app">
+    <img src="https://benchtoplabs.vercel.app/icon.svg" width="120" alt="Benchtop Labs Logo" />
+  </a>
+  <h1>Benchtop Labs Registry</h1>
+  <p><strong>The open verification registry and community submission intake for <a href="https://benchtoplabs.vercel.app">Benchtop Labs</a>.</strong></p>
+  <p>Automated quality verification and diagnostic scorecards for modern open-source software.</p>
 
-> **The open verification registry and submission intake for [Benchtop Labs](https://benchtoplabs.vercel.app).**
+  <p>
+    <a href="https://benchtoplabs.vercel.app"><strong>Live Directory</strong></a> •
+    <a href="https://github.com/Ameya79/benchtoplabs-registry/issues/new?template=submit-project.yml"><strong>Submit Your Tool</strong></a> •
+    <a href="https://benchtoplabs.vercel.app/showcase"><strong>Project Showcase</strong></a> •
+    <a href="BENCH_SPEC.md"><strong>Bench Spec v1.0</strong></a>
+  </p>
 
-[![Bench Spec v1.0](https://img.shields.io/badge/bench--spec-v1.0.0-FF6B14.svg)](BENCH_SPEC.md)
-[![Submissions Open](https://img.shields.io/badge/submissions-open-059669.svg)](https://github.com/Ameya79/benchtoplabs-registry/issues/new?template=submit-project.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+  <p>
+    <a href="BENCH_SPEC.md"><img src="https://img.shields.io/badge/bench--spec-v1.0.0-FF6B14.svg" alt="Bench Spec" /></a>
+    <a href="https://github.com/Ameya79/benchtoplabs-registry/issues/new?template=submit-project.yml"><img src="https://img.shields.io/badge/submissions-open-059669.svg" alt="Submissions Open" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" /></a>
+    <img src="https://img.shields.io/badge/checks-6%2F6%20automated-2ea44f.svg" alt="Automated Checks" />
+  </p>
+</div>
+
+---
 
 Benchtop Labs is an automated quality verification directory dedicated to curating high-craft, single-purpose open source tools. This repository hosts the public intake issue templates, the open-source **6-Point Bench Test Suite**, the canonical [Bench Test Specification](BENCH_SPEC.md), and verified project metadata.
 
@@ -18,7 +35,7 @@ We welcome open-source tools across **Python (PyPI)**, **Node (npm)**, **Rust (C
    👉 [**Open a Submission Issue**](https://github.com/Ameya79/benchtoplabs-registry/issues/new?template=submit-project.yml)  
    *(Or fill out the web form at [benchtoplabs.vercel.app/submit](https://benchtoplabs.vercel.app/submit))*
 
-2. **Automated Verification**:  
+2. **Automated Sandbox Verification**:  
    Our sandbox bot parses your repository, clones it in an isolated container, and evaluates it against our 6 automated checks. Within 60 seconds, the bot posts a complete **Verification Scorecard** table directly on your issue.
 
 3. **Approval & Publication**:  
@@ -57,39 +74,48 @@ pip install -r requirements.txt
 
 # 3. Run the full verification suite against all projects
 python bench/run.py
-
-# 4. Or test a specific submission payload
-python bench/check_submission.py
 ```
 
-> **Tip**: Set `export GITHUB_TOKEN=your_token` to avoid GitHub API rate limits.
+### Run Checks on a Specific Submission Body
+```bash
+python bench/check_submission.py --body "### GitHub Repository\nastral-sh/uv\n### Package Ecosystem\npypi"
+```
 
 ---
 
-## 📁 Repository Structure
+## 📦 Directory Structure
 
 ```
 benchtoplabs-registry/
 ├── .github/
-│   └── ISSUE_TEMPLATE/
-│       └── submit-project.yml       # Community submission issue form
+│   ├── ISSUE_TEMPLATE/
+│   │   └── submit-project.yml     # Interactive GitHub Issue submission form
+│   └── workflows/
+│       ├── submission-check.yml   # Sandbox bot evaluator for incoming issues
+│       └── approve-submission.yml # One-click maintainer approval workflow
 ├── bench/
-│   ├── checks.py                    # Core 6-point verification implementations
-│   ├── check_submission.py          # Automated issue parser and comment generator
-│   ├── run.py                       # Batch test runner
-│   └── schema/                      # JSON schemas for projects and bench results
-├── projects/                        # Verified project metadata (JSON)
-├── bench_results/                   # Test execution results (JSON)
-├── BENCH_SPEC.md                    # Formal Bench Test Specification v1.0
-├── LICENSE                          # MIT License
-└── README.md
+│   ├── checks.py                  # Multi-ecosystem checks (pypi, npm, cargo, go, binary)
+│   ├── check_submission.py        # Issue parser & scorecard markdown generator
+│   ├── run.py                     # Local test runner for all projects
+│   └── schema/                    # JSON schemas for projects and bench results
+├── projects/                      # Verified project metadata manifests (<slug>.json)
+├── bench_results/                 # Automated test scorecards (<slug>.json)
+├── BENCH_SPEC.md                  # Canonical Bench Test Specification v1.0
+├── LICENSE                        # Open source MIT license
+└── README.md                      # Registry documentation & intake guide
 ```
 
 ---
 
-## 🌐 Community & Links
+## 🛡️ Security & Sandbox Isolation
 
-- **Website**: [benchtoplabs.vercel.app](https://benchtoplabs.vercel.app)
-- **Directory Showcase**: [benchtoplabs.vercel.app/showcase](https://benchtoplabs.vercel.app/showcase)
-- **Founder**: [Ameya Kulkarni](https://github.com/Ameya79)
-- **License**: [MIT](LICENSE)
+The verification engine executes package evaluations under strict isolation:
+- All package identifier names and install targets are validated against alphanumeric whitelists.
+- Subprocess arguments are isolated via safe array passing and strict PEP 508 parsing.
+- File lookups enforce path traversal guards (`isValidSlug`) and reject Windows device names.
+
+---
+
+## License
+
+[MIT](LICENSE) © 2026 Benchtop Labs. Curated by [Ameya Kulkarni](https://github.com/Ameya79).
