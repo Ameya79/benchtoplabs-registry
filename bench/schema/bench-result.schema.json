@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://benchtoplabs.com/schema/bench-result.schema.json",
+  "title": "BenchResult",
+  "description": "The output of a bench test run against a single open-source project, as defined by the Bench Test Specification v1.0.",
+  "type": "object",
+  "required": ["slug", "checkedAt", "benchVersion", "checks", "info", "passed", "total"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "URL-safe unique identifier for the project."
+    },
+    "checkedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when the bench run was executed."
+    },
+    "benchVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Version of the Bench Test Specification used for this run."
+    },
+    "checks": {
+      "type": "array",
+      "description": "Ordered list of check results.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": ["readme", "license", "release", "activity", "installs", "tests"],
+            "description": "Machine-readable check identifier."
+          },
+          "label": {
+            "type": "string",
+            "description": "Human-readable check name."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pass", "fail", "na"],
+            "description": "Check outcome. 'na' checks are excluded from grading."
+          },
+          "value": {
+            "type": "string",
+            "description": "Optional human-readable detail about the check result."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "info": {
+      "type": "object",
+      "description": "Non-graded informational metrics about the project.",
+      "required": ["version", "releaseDate", "size", "dependencies", "lastCommit"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Latest version identifier."
+        },
+        "releaseDate": {
+          "type": "string",
+          "description": "Publication date of the latest release (YYYY-MM-DD)."
+        },
+        "size": {
+          "type": "string",
+          "description": "Download size with unit (e.g., '42.5 KB', '1.2 MB')."
+        },
+        "dependencies": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of runtime dependencies (excluding dev/optional)."
+        },
+        "lastCommit": {
+          "type": "string",
+          "description": "Date of the most recent commit (YYYY-MM-DD)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "passed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of graded checks with status 'pass'."
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of graded checks (excludes 'na')."
+    }
+  },
+  "additionalProperties": false
+}

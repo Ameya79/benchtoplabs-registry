@@ -1,0 +1,52 @@
+{
+  "slug": "mustel",
+  "checkedAt": "2026-10-24T22:46:32.897927+00:00",
+  "benchVersion": 1,
+  "checks": [
+    {
+      "id": "readme",
+      "label": "README",
+      "status": "pass",
+      "value": "Present"
+    },
+    {
+      "id": "license",
+      "label": "License",
+      "status": "pass",
+      "value": "MIT"
+    },
+    {
+      "id": "release",
+      "label": "Tagged release",
+      "status": "pass",
+      "value": "v0.3.4"
+    },
+    {
+      "id": "activity",
+      "label": "Last commit",
+      "status": "pass",
+      "value": "Today"
+    },
+    {
+      "id": "installs",
+      "label": "Installs clean",
+      "status": "pass",
+      "value": "PyPI release verified"
+    },
+    {
+      "id": "tests",
+      "label": "Tests pass",
+      "status": "pass",
+      "value": "Green"
+    }
+  ],
+  "info": {
+    "version": "0.3.4",
+    "releaseDate": "2026-06-21",
+    "size": "57.1 KB",
+    "dependencies": 7,
+    "lastCommit": "2026-10-24"
+  },
+  "passed": 6,
+  "total": 6
+}

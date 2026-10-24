@@ -1,0 +1,21 @@
+{
+  "slug": "driftwood",
+  "ecosystem": "other",
+  "name": "Driftwood",
+  "line": "Stateless Monte Carlo stock price simulation and quantitative risk engine API in Python.",
+  "logo": "/projects/driftwood.png",
+  "website": "https://driftwood-docs.vercel.app/",
+  "authors": [
+    {
+      "name": "Ameya Kulkarni",
+      "github": "https://github.com/Ameya79"
+    }
+  ],
+  "repo": "Ameya79/Driftwood",
+  "pypi": null,
+  "module": null,
+  "installer": null,
+  "installCommand": "git clone https://github.com/Ameya79/Driftwood.git",
+  "docs": "https://driftwood-docs.vercel.app/",
+  "package": "https://github.com/Ameya79/Driftwood"
+}

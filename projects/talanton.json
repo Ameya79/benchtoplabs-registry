@@ -1,0 +1,22 @@
+{
+  "slug": "talanton",
+  "ecosystem": "pypi",
+  "name": "Talanton",
+  "line": "Automatic spending limits on OpenAI, Claude, and 60+ AI models.",
+  "logo": "/projects/talanton.png",
+  "website": "https://talanton-py.vercel.app/",
+  "authors": [
+    {
+      "name": "Ameya Kulkarni",
+      "github": "https://github.com/Ameya79"
+    }
+  ],
+  "repo": "Ameya79/Talanton",
+  "pypi": "talanton-py",
+  "installTarget": "talanton-py[openai]",
+  "module": "talanton",
+  "installer": null,
+  "installCommand": "pip install \"talanton-py[openai]\"",
+  "docs": "https://talanton-py.vercel.app/",
+  "package": "https://pypi.org/project/talanton-py/"
+}

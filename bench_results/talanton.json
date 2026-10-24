@@ -1,0 +1,52 @@
+{
+  "slug": "talanton",
+  "checkedAt": "2026-10-24T22:47:46.309183+00:00",
+  "benchVersion": 1,
+  "checks": [
+    {
+      "id": "readme",
+      "label": "README",
+      "status": "pass",
+      "value": "Present"
+    },
+    {
+      "id": "license",
+      "label": "License",
+      "status": "pass",
+      "value": "MIT"
+    },
+    {
+      "id": "release",
+      "label": "Tagged release",
+      "status": "pass",
+      "value": "v0.2.2"
+    },
+    {
+      "id": "activity",
+      "label": "Last commit",
+      "status": "pass",
+      "value": "Today"
+    },
+    {
+      "id": "installs",
+      "label": "Installs clean",
+      "status": "pass",
+      "value": "pip install & import ok"
+    },
+    {
+      "id": "tests",
+      "label": "Tests pass",
+      "status": "pass",
+      "value": "Pending"
+    }
+  ],
+  "info": {
+    "version": "0.2.2",
+    "releaseDate": "2026-09-21",
+    "size": "44.7 KB",
+    "dependencies": 2,
+    "lastCommit": "2026-10-24"
+  },
+  "passed": 6,
+  "total": 6
+}

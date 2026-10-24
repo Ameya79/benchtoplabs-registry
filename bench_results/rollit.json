@@ -1,0 +1,52 @@
+{
+  "slug": "rollit",
+  "checkedAt": "2026-10-24T22:47:12.881646+00:00",
+  "benchVersion": 1,
+  "checks": [
+    {
+      "id": "readme",
+      "label": "README",
+      "status": "pass",
+      "value": "Present"
+    },
+    {
+      "id": "license",
+      "label": "License",
+      "status": "pass",
+      "value": "MIT"
+    },
+    {
+      "id": "release",
+      "label": "Tagged release",
+      "status": "pass",
+      "value": "v1.0.1"
+    },
+    {
+      "id": "activity",
+      "label": "Last commit",
+      "status": "pass",
+      "value": "128d ago"
+    },
+    {
+      "id": "installs",
+      "label": "Installs clean",
+      "status": "pass",
+      "value": "pip install & import ok"
+    },
+    {
+      "id": "tests",
+      "label": "Tests pass",
+      "status": "pass",
+      "value": "Green"
+    }
+  ],
+  "info": {
+    "version": "1.0.1",
+    "releaseDate": "2026-06-18",
+    "size": "8.1 KB",
+    "dependencies": 1,
+    "lastCommit": "2026-06-18"
+  },
+  "passed": 6,
+  "total": 6
+}

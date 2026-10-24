@@ -1,0 +1,25 @@
+{
+  "slug": "mustel",
+  "ecosystem": "pypi",
+  "name": "Mustel",
+  "line": "Non-AI static analysis layer for AI coding agents with token-efficient diagnostics.",
+  "logo": "/projects/mustel.png",
+  "website": "https://mustel.vercel.app/",
+  "authors": [
+    {
+      "name": "Ameya Kulkarni",
+      "github": "https://github.com/Ameya79"
+    },
+    {
+      "name": "Raunak",
+      "github": "https://github.com/mustel-py"
+    }
+  ],
+  "repo": "mustel-py/mustel",
+  "pypi": "mustel",
+  "module": "mustel",
+  "installer": null,
+  "installCommand": "pip install mustel",
+  "docs": "https://mustel.vercel.app/",
+  "package": "https://pypi.org/project/mustel/"
+}

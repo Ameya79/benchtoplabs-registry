@@ -1,0 +1,52 @@
+{
+  "slug": "cuttle",
+  "checkedAt": "2026-10-24T22:45:24.956519+00:00",
+  "benchVersion": 1,
+  "checks": [
+    {
+      "id": "readme",
+      "label": "README",
+      "status": "pass",
+      "value": "Present"
+    },
+    {
+      "id": "license",
+      "label": "License",
+      "status": "pass",
+      "value": "GPL-3.0"
+    },
+    {
+      "id": "release",
+      "label": "Tagged release",
+      "status": "pass",
+      "value": "v1.0.1"
+    },
+    {
+      "id": "activity",
+      "label": "Last commit",
+      "status": "pass",
+      "value": "Today"
+    },
+    {
+      "id": "installs",
+      "label": "Installs clean",
+      "status": "pass",
+      "value": "Cuttle-Setup-x64.exe (375.9 MB)"
+    },
+    {
+      "id": "tests",
+      "label": "Tests pass",
+      "status": "pass",
+      "value": "Pending"
+    }
+  ],
+  "info": {
+    "version": "1.0.1",
+    "releaseDate": "2026-10-20",
+    "size": "375.9 MB",
+    "dependencies": 0,
+    "lastCommit": "2026-10-24"
+  },
+  "passed": 6,
+  "total": 6
+}

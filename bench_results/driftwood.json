@@ -1,0 +1,52 @@
+{
+  "slug": "driftwood",
+  "checkedAt": "2026-10-24T22:45:29.064806+00:00",
+  "benchVersion": 1,
+  "checks": [
+    {
+      "id": "readme",
+      "label": "README",
+      "status": "pass",
+      "value": "Present"
+    },
+    {
+      "id": "license",
+      "label": "License",
+      "status": "pass",
+      "value": "MIT"
+    },
+    {
+      "id": "release",
+      "label": "Tagged release",
+      "status": "pass",
+      "value": "v1.0.0"
+    },
+    {
+      "id": "activity",
+      "label": "Last commit",
+      "status": "pass",
+      "value": "119d ago"
+    },
+    {
+      "id": "installs",
+      "label": "Installs clean",
+      "status": "pass",
+      "value": "Source repo verified"
+    },
+    {
+      "id": "tests",
+      "label": "Tests pass",
+      "status": "pass",
+      "value": "Green"
+    }
+  ],
+  "info": {
+    "version": "1.0.0",
+    "releaseDate": "2026-01-01",
+    "size": "0 KB",
+    "dependencies": 0,
+    "lastCommit": "2026-06-27"
+  },
+  "passed": 6,
+  "total": 6
+}

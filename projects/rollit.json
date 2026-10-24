@@ -1,0 +1,21 @@
+{
+  "slug": "rollit",
+  "ecosystem": "pypi",
+  "name": "rollit",
+  "line": "Rolling window statistics for numpy arrays.",
+  "logo": "/projects/rollit.png",
+  "website": "https://rollit-website.vercel.app/",
+  "authors": [
+    {
+      "name": "Ameya Kulkarni",
+      "github": "https://github.com/Ameya79"
+    }
+  ],
+  "repo": "Ameya79/rollit",
+  "pypi": "rollit",
+  "module": "rollit",
+  "installer": null,
+  "installCommand": "pip install rollit",
+  "docs": "https://rollit-website.vercel.app/",
+  "package": "https://pypi.org/project/rollit/"
+}

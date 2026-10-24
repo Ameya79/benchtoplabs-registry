@@ -1,0 +1,21 @@
+{
+  "slug": "cuttle",
+  "ecosystem": "binary",
+  "name": "Cuttle",
+  "line": "Right-click any file in Windows Explorer, pick the format you want, and get a converted copy instantly.",
+  "logo": "/projects/cuttle.png",
+  "website": "https://cuttle-website-gamma.vercel.app/",
+  "authors": [
+    {
+      "name": "Ameya Kulkarni",
+      "github": "https://github.com/Ameya79"
+    }
+  ],
+  "repo": "Ameya79/cuttle",
+  "pypi": null,
+  "module": null,
+  "installer": "*.exe",
+  "installCommand": "curl -sLO https://github.com/Ameya79/cuttle/releases/latest/download/Cuttle-Setup-x64.exe",
+  "docs": "https://cuttle-website-gamma.vercel.app/",
+  "package": "https://github.com/Ameya79/cuttle/releases/latest"
+}

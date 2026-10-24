@@ -1,0 +1,126 @@
+name: "🧪 Submit Project to Benchtop Labs"
+description: "Submit an open-source project for automated bench verification"
+title: "[Submission]: {project_name}"
+labels: ["submission", "pending-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Welcome to the Benchtop Labs Verification Bench
+        Projects submitted here run through our automated 6-point verification suite in an isolated sandbox.
+        See [BENCH_SPEC.md](https://github.com/Ameya79/benchtoplabs-website/blob/main/BENCH_SPEC.md) for full criteria.
+
+  - type: input
+    id: repo
+    attributes:
+      label: GitHub Repository
+      description: "Full owner/repository name (e.g., 'facebook/react' or 'astral-sh/uv')"
+      placeholder: "owner/repo"
+    validations:
+      required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: Project Name
+      description: "Human-readable display name"
+      placeholder: "e.g. Rollit"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ecosystem
+    attributes:
+      label: Package Ecosystem
+      description: "The primary distribution channel for this project"
+      options:
+        - pypi
+        - npm
+        - cargo
+        - go
+        - binary
+        - other
+    validations:
+      required: true
+
+  - type: input
+    id: packageName
+    attributes:
+      label: Package Name
+      description: "Registry name (PyPI package, npm package, crate name, or Go module)"
+      placeholder: "e.g. my-package or @scope/my-package"
+    validations:
+      required: false
+
+  - type: textarea
+    id: line
+    attributes:
+      label: One-Line Summary
+      description: "Crisp description of what the project does (max 120 characters)"
+      placeholder: "e.g. Rolling window statistics for numpy arrays."
+    validations:
+      required: true
+
+  - type: input
+    id: installCommand
+    attributes:
+      label: Install Command
+      description: "How users install the project"
+      placeholder: "e.g. npm install my-pkg or pip install my-pkg"
+    validations:
+      required: false
+
+  - type: input
+    id: website
+    attributes:
+      label: Website / Landing Page
+      description: "Optional URL for project website"
+      placeholder: "https://my-project.dev"
+    validations:
+      required: false
+
+  - type: input
+    id: docs
+    attributes:
+      label: Documentation URL
+      description: "Optional documentation URL"
+      placeholder: "https://docs.my-project.dev"
+    validations:
+      required: false
+
+  - type: input
+    id: logo_url
+    attributes:
+      label: Logo URL
+      description: "Optional URL for custom project icon or logo (defaults automatically to repo owner's GitHub avatar)"
+      placeholder: "https://raw.githubusercontent.com/.../logo.png"
+    validations:
+      required: false
+
+  - type: input
+    id: author_name
+    attributes:
+      label: Primary Author Name
+      description: "Maintainer name"
+      placeholder: "Jane Doe"
+    validations:
+      required: true
+
+  - type: input
+    id: author_github
+    attributes:
+      label: Author GitHub Profile
+      description: "Maintainer GitHub URL or handle"
+      placeholder: "https://github.com/janedoe"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Conformance & Open Source Attestation
+      options:
+        - label: "This repository is public, open source (OSI-approved license), and I have permission to submit it."
+          required: true
+        - label: "I understand that passing the bench requires an active tagged release, working install sandbox, and passing CI tests."
+          required: true

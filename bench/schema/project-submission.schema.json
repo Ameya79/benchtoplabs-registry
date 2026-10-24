@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://benchtoplabs.com/schema/project-submission.schema.json",
+  "title": "ProjectSubmission",
+  "description": "Schema for project submissions to Benchtop Labs. Defines the minimum information required for bench verification.",
+  "type": "object",
+  "required": ["slug", "name", "line", "repo", "ecosystem"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "URL-safe unique identifier for the project. Lowercase letters, digits, and hyphens only."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60,
+      "description": "Human-readable project name."
+    },
+    "line": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 120,
+      "description": "One-line description of what the project does."
+    },
+    "logo": {
+      "type": "string",
+      "description": "Path to the project logo image (relative to public/)."
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the project's website or documentation."
+    },
+    "authors": {
+      "type": "array",
+      "description": "List of project authors/maintainers.",
+      "items": {
+        "type": "object",
+        "required": ["name", "github"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Author's display name."
+          },
+          "github": {
+            "type": "string",
+            "format": "uri",
+            "description": "Author's GitHub profile URL."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "repo": {
+      "type": "string",
+      "pattern": "^[\\w.-]+/[\\w.-]+$",
+      "description": "GitHub repository in 'owner/repo' format."
+    },
+    "ecosystem": {
+      "type": "string",
+      "enum": ["pypi", "npm", "cargo", "go", "binary", "other"],
+      "description": "The package distribution ecosystem."
+    },
+    "pypi": {
+      "type": ["string", "null"],
+      "description": "PyPI package name (for ecosystem='pypi')."
+    },
+    "module": {
+      "type": ["string", "null"],
+      "description": "Python import name or main module identifier."
+    },
+    "installer": {
+      "type": ["string", "null"],
+      "description": "Glob pattern for release asset matching (e.g., '*.exe' for ecosystem='binary')."
+    },
+    "installCommand": {
+      "type": "string",
+      "description": "The install command users should run (e.g., 'pip install my-tool')."
+    },
+    "docs": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the project's documentation."
+    },
+    "package": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the package registry page (PyPI, npm, crates.io, etc.)."
+    },
+    "npm": {
+      "type": ["string", "null"],
+      "description": "npm package name (for ecosystem='npm')."
+    },
+    "crate": {
+      "type": ["string", "null"],
+      "description": "crates.io crate name (for ecosystem='cargo')."
+    },
+    "goModule": {
+      "type": ["string", "null"],
+      "description": "Go module path (for ecosystem='go')."
+    }
+  },
+  "additionalProperties": false
+}
