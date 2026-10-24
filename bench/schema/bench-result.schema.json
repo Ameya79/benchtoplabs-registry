@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://benchtoplabs.com/schema/bench-result.schema.json",
+  "$id": "https://benchtoplabs.vercel.app/schema/bench-result.schema.json",
   "title": "BenchResult",
   "description": "The output of a bench test run against a single open-source project, as defined by the Bench Test Specification v1.0.",
   "type": "object",

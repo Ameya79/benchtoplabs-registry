@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://benchtoplabs.com/schema/project-submission.schema.json",
+  "$id": "https://benchtoplabs.vercel.app/schema/project-submission.schema.json",
   "title": "ProjectSubmission",
   "description": "Schema for project submissions to Benchtop Labs. Defines the minimum information required for bench verification.",
   "type": "object",
