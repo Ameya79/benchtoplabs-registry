@@ -14,6 +14,7 @@ import tempfile
 import subprocess
 import fnmatch
 import shutil
+import re
 from datetime import datetime, timezone
 
 def _get_headers(token=None):
@@ -165,6 +166,15 @@ def _check_installs_pypi(project, token=None):
 
     module_name = project.get("module") or pypi_name
     install_target = project.get("installTarget") or project.get("installPackage") or pypi_name
+
+    # Security check: validate module_name is a safe python identifier
+    if not re.match(r"^[a-zA-Z_][a-zA-Z0-9_]*$", str(module_name)):
+        return {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Invalid module name"}
+
+    # Security check: validate install_target does not contain shell metacharacters
+    if not re.match(r"^[a-zA-Z0-9_.-]+(?:\[[a-zA-Z0-9_,.-]+\])?(?:[><=~!]+[a-zA-Z0-9_.-]+)?$", str(install_target)):
+        return {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Invalid install target"}
+
     # Test install in an ephemeral temp venv
     with tempfile.TemporaryDirectory() as tmpdir:
         try:
@@ -188,6 +198,9 @@ def _check_installs_pypi(project, token=None):
 
 def _check_installs_npm(project, token=None):
     npm_name = project.get("packageName") or project.get("npm") or project.get("slug")
+    if not npm_name or not re.match(r"^(@[a-zA-Z0-9_.-]+/)?[a-zA-Z0-9_.-]+$", str(npm_name)):
+        return {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Invalid npm package name"}
+
     status_code, npm_data = _npm_get(npm_name)
     if status_code != 200 or not npm_data:
         return {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Not found on npm"}
@@ -202,7 +215,8 @@ def _check_installs_npm(project, token=None):
                 subprocess.run([npm_cmd, "init", "-y"], cwd=tmpdir, check=True, capture_output=True, timeout=20)
                 res = subprocess.run([npm_cmd, "install", npm_name], cwd=tmpdir, capture_output=True, timeout=45)
                 if res.returncode == 0:
-                    req_res = subprocess.run([node_cmd, "-e", f"require('{npm_name}')"], cwd=tmpdir, capture_output=True, timeout=15)
+                    safe_npm_json = json.dumps(str(npm_name))
+                    req_res = subprocess.run([node_cmd, "-e", f"require({safe_npm_json})"], cwd=tmpdir, capture_output=True, timeout=15)
                     if req_res.returncode == 0:
                         return {"id": "installs", "label": "Installs clean", "status": "pass", "value": f"npm install & require ok (v{latest})"}
                     return {"id": "installs", "label": "Installs clean", "status": "pass", "value": f"npm install ok (v{latest})"}
@@ -214,6 +228,9 @@ def _check_installs_npm(project, token=None):
 
 def _check_installs_cargo(project, token=None):
     crate_name = project.get("packageName") or project.get("cargo") or project.get("slug")
+    if not crate_name or not re.match(r"^[a-zA-Z0-9_.-]+$", str(crate_name)):
+        return {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Invalid crate name"}
+
     status_code, cargo_data = _cargo_get(crate_name)
     if status_code != 200 or not cargo_data or "crate" not in cargo_data:
         return {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Not found on crates.io"}
@@ -237,6 +254,8 @@ def _check_installs_cargo(project, token=None):
 
 def _check_installs_go(project, token=None):
     module_path = project.get("packageName") or project.get("go") or f"github.com/{project.get('repo')}"
+    if not module_path or not re.match(r"^[a-zA-Z0-9_.-]+(/[a-zA-Z0-9_.-]+)+$", str(module_path)):
+        return {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Invalid Go module path"}
     status_code, versions = _go_get(module_path)
     has_go = shutil.which("go") is not None
     if has_go:

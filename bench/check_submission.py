@@ -57,18 +57,56 @@ def parse_issue_body(body_text):
 
     # Map header names to project attributes
     repo_raw = fields.get("GitHub Repository", "").strip()
-    # Normalize repo format (handle full github.com URL or owner/repo)
+    repo = ""
+    # Normalize repo format (handle full github.com URL, line-by-line extraction, or owner/repo)
+    candidate = None
     repo_match = re.search(r"github\.com/([a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+)", repo_raw)
     if repo_match:
-        repo = repo_match.group(1)
+        candidate = repo_match.group(1).rstrip("/")
     else:
-        repo = repo_raw.replace("https://", "").replace("http://", "").strip("/").split("/")[-2:]
-        repo = "/".join(repo) if len(repo) == 2 else repo_raw
+        for line_item in repo_raw.splitlines():
+            line_item = line_item.strip()
+            if not line_item:
+                continue
+            cleaned = re.sub(r"^https?://", "", line_item).rstrip("/")
+            if cleaned.startswith("github.com/"):
+                cleaned = cleaned[len("github.com/"):]
+            if "/" in cleaned:
+                parts = cleaned.split("/")
+                if len(parts) >= 2:
+                    candidate = f"{parts[-2]}/{parts[-1]}"
+                    break
 
-    name = fields.get("Project Name", "").strip() or (repo.split("/")[-1] if "/" in repo else "Unnamed Project")
-    slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-    if not slug:
+    if candidate:
+        if candidate.endswith(".git"):
+            candidate = candidate[:-4]
+        candidate = candidate.rstrip("/")
+        if "/" in candidate:
+            owner, repo_name = candidate.split("/", 1)
+            if repo_name.endswith(".git"):
+                repo_name = repo_name[:-4]
+            if (
+                re.match(r"^[a-zA-Z0-9_-]+$", owner)
+                and re.match(r"^[a-zA-Z0-9_.-]+$", repo_name)
+                and ".." not in owner
+                and ".." not in repo_name
+                and not owner.startswith(".")
+                and not repo_name.startswith(".")
+            ):
+                repo = f"{owner}/{repo_name}"
+
+    raw_name = fields.get("Project Name", "").strip() or (repo.split("/")[-1] if repo else "project")
+    slug = re.sub(r"[^a-z0-9]+", "-", raw_name.lower()).strip("-")
+    if not slug and repo:
         slug = re.sub(r"[^a-z0-9]+", "-", repo.replace("/", "-").lower()).strip("-")
+    if not slug:
+        slug = "project"
+
+    WINDOWS_RESERVED = {"con", "prn", "aux", "nul", "com1", "com2", "com3", "com4", "com5", "com6", "com7", "com8", "com9", "lpt1", "lpt2", "lpt3", "lpt4", "lpt5", "lpt6", "lpt7", "lpt8", "lpt9"}
+    if slug.lower() in WINDOWS_RESERVED:
+        slug = f"bench-{slug}"
+
+    name = fields.get("Project Name", "").strip() or (repo.split("/")[-1] if repo else slug)
 
     ecosystem = fields.get("Package Ecosystem", "other").strip().lower()
     package_name = fields.get("Package Name", "").strip() or None
@@ -170,7 +208,7 @@ def generate_markdown_report(project, checks, info, passed, total):
 **Project**: [{project['name']}]({project['website']}) (`{project['repo']}`)  
 **Ecosystem**: `{project.get('ecosystem', 'other')}`  
 **Verdict**: **{passed} of {total} checks passed** ({badge_status})  
-**Bench Version**: `1.0.0` (Conforms to [BENCH_SPEC.md](https://github.com/Ameya79/benchtoplabs-registry/blob/main/BENCH_SPEC.md))
+**Bench Version**: `1.0.0` (Conforms to [BENCH_SPEC.md](https://github.com/Ameya79/benchtoplabs-website/blob/main/BENCH_SPEC.md))
 
 ### Verification Results
 
@@ -222,19 +260,38 @@ def main():
 
     print(f"Parsed submission: {project['name']} ({repo}) [ecosystem: {project.get('ecosystem')}]")
 
-    checks = [
-        check_readme(repo, token),
-        check_license(repo, token),
-        check_release(repo, token),
-        check_activity(repo, token),
-        check_installs(project, token),
-        check_tests(repo, token),
-    ]
-
-    graded = [c for c in checks if c["status"] != "na"]
-    passed = len([c for c in graded if c["status"] == "pass"])
-    total = len(graded)
-    info = get_project_info(project, token)
+    if not repo:
+        print("Warning: Invalid or missing repository format in submission body.")
+        checks = [
+            {"id": "readme", "label": "README", "status": "fail", "value": "Missing/invalid repo"},
+            {"id": "license", "label": "License", "status": "fail", "value": "Missing/invalid repo"},
+            {"id": "release", "label": "Tagged release", "status": "fail", "value": "Missing/invalid repo"},
+            {"id": "activity", "label": "Last commit", "status": "fail", "value": "Missing/invalid repo"},
+            {"id": "installs", "label": "Installs clean", "status": "fail", "value": "Missing/invalid repo"},
+            {"id": "tests", "label": "Tests pass", "status": "fail", "value": "Missing/invalid repo"},
+        ]
+        info = {
+            "version": "N/A",
+            "releaseDate": "N/A",
+            "size": "N/A",
+            "dependencies": 0,
+            "lastCommit": "N/A",
+        }
+        passed = 0
+        total = 6
+    else:
+        checks = [
+            check_readme(repo, token),
+            check_license(repo, token),
+            check_release(repo, token),
+            check_activity(repo, token),
+            check_installs(project, token),
+            check_tests(repo, token),
+        ]
+        graded = [c for c in checks if c["status"] != "na"]
+        passed = len([c for c in graded if c["status"] == "pass"])
+        total = len(graded)
+        info = get_project_info(project, token)
 
     bench_result = {
         "slug": slug,
