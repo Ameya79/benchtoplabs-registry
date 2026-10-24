@@ -1,6 +1,6 @@
 # 🧪 Benchtop Labs Registry
 
-> **The open verification registry and submission intake for [Benchtop Labs](https://benchtoplabs.com).**
+> **The open verification registry and submission intake for [Benchtop Labs](https://benchtoplabs.vercel.app).**
 
 [![Bench Spec v1.0](https://img.shields.io/badge/bench--spec-v1.0.0-FF6B14.svg)](BENCH_SPEC.md)
 [![Submissions Open](https://img.shields.io/badge/submissions-open-059669.svg)](https://github.com/Ameya79/benchtoplabs-registry/issues/new?template=submit-project.yml)
@@ -16,13 +16,13 @@ We welcome open-source tools across **Python (PyPI)**, **Node (npm)**, **Rust (C
 
 1. **Submit via GitHub Issue**:  
    👉 [**Open a Submission Issue**](https://github.com/Ameya79/benchtoplabs-registry/issues/new?template=submit-project.yml)  
-   *(Or fill out the web form at [benchtoplabs.com/submit](https://benchtoplabs.com/submit))*
+   *(Or fill out the web form at [benchtoplabs.vercel.app/submit](https://benchtoplabs.vercel.app/submit))*
 
 2. **Automated Verification**:  
    Our sandbox bot parses your repository, clones it in an isolated container, and evaluates it against our 6 automated checks. Within 60 seconds, the bot posts a complete **Verification Scorecard** table directly on your issue.
 
 3. **Approval & Publication**:  
-   Once all checks pass, a maintainer applies the `approved` label. Your project is automatically merged, assigned a dedicated spec page at `https://benchtoplabs.com/p/<your-slug>`, and listed in the [Public Directory](https://benchtoplabs.com/showcase).
+   Once all checks pass, a maintainer applies the `approved` label. Your project is automatically merged, assigned a dedicated spec page at `https://benchtoplabs.vercel.app/p/<your-slug>`, and listed in the [Public Directory](https://benchtoplabs.vercel.app/showcase).
 
 ---
 
@@ -89,7 +89,7 @@ benchtoplabs-registry/
 
 ## 🌐 Community & Links
 
-- **Website**: [benchtoplabs.com](https://benchtoplabs.com)
-- **Directory Showcase**: [benchtoplabs.com/showcase](https://benchtoplabs.com/showcase)
+- **Website**: [benchtoplabs.vercel.app](https://benchtoplabs.vercel.app)
+- **Directory Showcase**: [benchtoplabs.vercel.app/showcase](https://benchtoplabs.vercel.app/showcase)
 - **Founder**: [Ameya Kulkarni](https://github.com/Ameya79)
 - **License**: [MIT](LICENSE)

@@ -3,9 +3,9 @@
 **Status**: Active  
 **Version**: 1.0.0  
 **Last Updated**: 2026-10-24  
-**Maintainer**: Benchtop Labs ([benchtoplabs.com](https://benchtoplabs.com))  
+**Maintainer**: Benchtop Labs ([benchtoplabs.vercel.app](https://benchtoplabs.vercel.app))  
 **License**: CC BY 4.0  
-**Canonical URL**: [https://benchtoplabs.com/about](https://benchtoplabs.com/about)
+**Canonical URL**: [https://benchtoplabs.vercel.app/about](https://benchtoplabs.vercel.app/about)
 
 ---
 
@@ -285,7 +285,7 @@ A bench test implementation is **conformant** with this specification if:
 
 ## 9. References
 
-- **Benchtop Labs**: [https://benchtoplabs.com](https://benchtoplabs.com)
+- **Benchtop Labs**: [https://benchtoplabs.vercel.app](https://benchtoplabs.vercel.app)
 - **Source Repository**: [https://github.com/Ameya79/benchtoplabs-registry](https://github.com/Ameya79/benchtoplabs-registry)
 - **GitHub API**: [https://docs.github.com/en/rest](https://docs.github.com/en/rest)
 - **PyPI JSON API**: [https://warehouse.pypa.io/api-reference/json.html](https://warehouse.pypa.io/api-reference/json.html)

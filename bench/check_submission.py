@@ -191,7 +191,7 @@ def generate_markdown_report(project, checks, info, passed, total):
     if is_passing:
         comment += f"""### 🎉 All Bench Checks Passed!
 This project satisfies the **Bench Test Specification v1.0**.
-A maintainer will review the submission. Once approved, the project will be added to the [Benchtop Labs Directory](https://benchtoplabs.com) automatically.
+A maintainer will review the submission. Once approved, the project will be added to the [Benchtop Labs Directory](https://benchtoplabs.vercel.app) automatically.
 
 Maintainers: Label this issue with `approved` to merge and deploy.
 """

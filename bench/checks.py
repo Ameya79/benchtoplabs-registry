@@ -67,7 +67,7 @@ def _npm_get(package_name):
 
 def _cargo_get(crate_name):
     url = f"https://crates.io/api/v1/crates/{crate_name}"
-    req = urllib.request.Request(url, headers={"User-Agent": "benchtop-bot/1.0 (benchtoplabs.com)", "Accept": "application/json"})
+    req = urllib.request.Request(url, headers={"User-Agent": "benchtop-bot/1.0 (benchtoplabs.vercel.app)", "Accept": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=15) as res:
             return res.status, json.loads(res.read().decode("utf-8"))
