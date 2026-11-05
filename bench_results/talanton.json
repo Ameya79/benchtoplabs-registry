@@ -1,6 +1,6 @@
 {
   "slug": "talanton",
-  "checkedAt": "2026-10-24T23:21:46.107839+00:00",
+  "checkedAt": "2026-11-05T11:38:39.590672+00:00",
   "benchVersion": 1,
   "checks": [
     {
@@ -25,7 +25,7 @@
       "id": "activity",
       "label": "Last commit",
       "status": "pass",
-      "value": "Today"
+      "value": "10d ago"
     },
     {
       "id": "installs",
@@ -45,7 +45,7 @@
     "releaseDate": "2026-09-21",
     "size": "44.7 KB",
     "dependencies": 2,
-    "lastCommit": "2026-10-24"
+    "lastCommit": "2026-10-25"
   },
   "passed": 6,
   "total": 6

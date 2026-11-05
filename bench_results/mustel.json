@@ -1,6 +1,6 @@
 {
   "slug": "mustel",
-  "checkedAt": "2026-10-24T23:20:18.673868+00:00",
+  "checkedAt": "2026-11-05T11:36:47.993202+00:00",
   "benchVersion": 1,
   "checks": [
     {
@@ -25,7 +25,7 @@
       "id": "activity",
       "label": "Last commit",
       "status": "pass",
-      "value": "Today"
+      "value": "11d ago"
     },
     {
       "id": "installs",

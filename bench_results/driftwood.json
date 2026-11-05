@@ -1,6 +1,6 @@
 {
   "slug": "driftwood",
-  "checkedAt": "2026-10-24T23:19:09.482871+00:00",
+  "checkedAt": "2026-11-05T11:35:35.700475+00:00",
   "benchVersion": 1,
   "checks": [
     {
@@ -25,7 +25,7 @@
       "id": "activity",
       "label": "Last commit",
       "status": "pass",
-      "value": "119d ago"
+      "value": "10d ago"
     },
     {
       "id": "installs",
@@ -45,7 +45,7 @@
     "releaseDate": "2026-01-01",
     "size": "0 KB",
     "dependencies": 0,
-    "lastCommit": "2026-06-27"
+    "lastCommit": "2026-10-25"
   },
   "passed": 6,
   "total": 6

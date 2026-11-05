@@ -1,6 +1,6 @@
 {
   "slug": "cuttle",
-  "checkedAt": "2026-10-24T23:19:05.158270+00:00",
+  "checkedAt": "2026-11-05T11:35:31.503317+00:00",
   "benchVersion": 1,
   "checks": [
     {
@@ -25,7 +25,7 @@
       "id": "activity",
       "label": "Last commit",
       "status": "pass",
-      "value": "Today"
+      "value": "10d ago"
     },
     {
       "id": "installs",
@@ -45,7 +45,7 @@
     "releaseDate": "2026-10-20",
     "size": "375.9 MB",
     "dependencies": 0,
-    "lastCommit": "2026-10-24"
+    "lastCommit": "2026-10-25"
   },
   "passed": 6,
   "total": 6

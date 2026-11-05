@@ -1,6 +1,6 @@
 {
   "slug": "rollit",
-  "checkedAt": "2026-10-24T23:21:00.929068+00:00",
+  "checkedAt": "2026-11-05T11:37:33.208035+00:00",
   "benchVersion": 1,
   "checks": [
     {
@@ -25,7 +25,7 @@
       "id": "activity",
       "label": "Last commit",
       "status": "pass",
-      "value": "128d ago"
+      "value": "10d ago"
     },
     {
       "id": "installs",
@@ -45,7 +45,7 @@
     "releaseDate": "2026-06-18",
     "size": "8.1 KB",
     "dependencies": 1,
-    "lastCommit": "2026-06-18"
+    "lastCommit": "2026-10-25"
   },
   "passed": 6,
   "total": 6
