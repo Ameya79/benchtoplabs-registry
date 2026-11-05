@@ -1,0 +1,21 @@
+{
+  "slug": "galeus",
+  "ecosystem": "other",
+  "name": "Galeus",
+  "line": "Local certificate automation & Canva layout workstation with zero typos.",
+  "logo": "/projects/galeus.png",
+  "website": "https://galeus.vercel.app/",
+  "authors": [
+    {
+      "name": "Ameya Kulkarni",
+      "github": "https://github.com/Ameya79"
+    }
+  ],
+  "repo": "Ameya79/galeus",
+  "pypi": null,
+  "module": null,
+  "installer": null,
+  "installCommand": "git clone https://github.com/Ameya79/galeus.git",
+  "docs": "https://galeus.vercel.app/",
+  "package": "https://github.com/Ameya79/galeus"
+}
